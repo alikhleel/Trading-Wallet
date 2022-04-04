@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:trading_wallet/fixtures/fake_data.dart';
+import 'package:trading_wallet/presentation/screens/home/widgets/add_trade/add_trade_dialog.dart';
 import '../../widgets/card.dart';
 import 'widgets/profit_card/assets_alocation_chart.dart';
 import 'widgets/profit_card/profit_chart.dart';
@@ -21,7 +23,7 @@ class HomePage extends StatelessWidget {
           ),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () => showAddTradeDialog(context),
                 icon: const Icon(
                   Icons.add,
                   color: Colors.black,
@@ -49,5 +51,15 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ));
+  }
+
+  Future<dynamic> showAddTradeDialog(BuildContext context) {
+    // This function will push new Widget to the Navigator
+    return showMaterialModalBottomSheet(
+        expand: true,
+        context: context,
+        builder: (context) {
+          return const AddTradeDialog();
+        });
   }
 }
